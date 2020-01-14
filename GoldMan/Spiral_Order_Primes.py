@@ -41,7 +41,6 @@ def matrix_1(m):
         for i in m[0]:
             if is_prime_1(i):
                 result.append(i)
-
         m.pop(0)
         print("*m")
         print(*m)
@@ -51,7 +50,14 @@ def matrix_1(m):
     return result
 
 
-matrix = [[7,7,3,8,1],[13,5,4,5,2],[9,2,12,3,9],[6,12,1,11,41]]
+matrix = [[7,7,3,8,1],
+          [13,5,4,5,2],
+          [9,2,12,3,9],
+          [6,12,1,11,41]]
 
 print(spiralOrder(matrix))
+
+print(f"matrix = {matrix}")
 print(matrix_1(matrix))
+
+print(list(zip([1,2],[3,4])))

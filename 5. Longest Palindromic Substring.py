@@ -1,7 +1,7 @@
 # 5. Longest Palindromic Substring
 # Given a string s, find the longest palindromic substring in s.
 # You may assume that the maximum length of s is 1000
-
+# DP
 class LongestPalindrome:
     def longestPalindrome( self, s: str) -> str:
         if not s:
@@ -31,3 +31,27 @@ class LongestPalindrome:
 s = LongestPalindrome()
 
 print(s.longestPalindrome("a"))
+
+
+# https://www.youtube.com/watch?v=g3R-pjUNa3k
+class LongestPalindrome2:
+    def longestPalindrome(self, s: str) -> str:
+        start, max_len = 0, 0
+
+        def getLen(l, r):
+            while l >= 0 and r < len(s) and s[l] == s[r]:
+                l -= 1
+                r += 1
+            return r - l - 1
+
+        for i in range(len(s)):
+            cur = max(getLen(i, i), getLen(i, i + 1))
+            if cur > max_len:
+                max_len = cur
+                start = i - (cur - 1) // 2
+        return s[start:start + max_len]
+
+s2 = LongestPalindrome2()
+input = "abcbca"
+
+print(s2.longestPalindrome(input))
