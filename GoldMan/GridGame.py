@@ -28,7 +28,7 @@ def gridGame(grid, k, rules):
             return states[(k + 1) % len(states) - 1]
         else:
             states.append(res)
-            print("Not find ...")
+            print("Not find .. .")
             print(f"Res added {res}")
             # print(states)
             grid = res
