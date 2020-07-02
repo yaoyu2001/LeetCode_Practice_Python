@@ -48,6 +48,7 @@ class LongestPalindrome2:
             cur = max(getLen(i, i), getLen(i, i + 1))
             if cur > max_len:
                 max_len = cur
+                """Get the index of start, from i forward (cur - 1) // 2 cur - 1 for even number"""
                 start = i - (cur - 1) // 2
         return s[start:start + max_len]
 

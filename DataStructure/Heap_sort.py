@@ -27,10 +27,12 @@ n = 6
 heapify(tree,n,0)
 print(tree)
 
+
 # 20:12 in video, if nodes are inordered, heapify from the parent node of last node
 def build_heap(tree:list, n:int):
     last_node = n - 1
-    parent = last_node//2 - 1
+    parent = (last_node-1) // 2
+    """Heapify , from the last "parent" node"""
     for i in range(parent,-1,-1):
         heapify(tree, n, i)
 
@@ -38,8 +40,10 @@ tree2 = [2,5,3,1,10,4]
 n = 6
 # heapify(tree2,n,0)
 # print(tree2)
-# build_heap(tree2,n)
-# print(tree2)
+build_heap(tree2,n)
+print("build_heap")
+print(tree2)
+
 
 # 25:30 heap sort, because the first node will always has the biggest value, we can push it and cut the last node to get an ordered list
 def heap_sort(tree, n):
@@ -48,5 +52,6 @@ def heap_sort(tree, n):
         swap(tree, i, 0)
         # heapify "i" to "cut" the last node
         heapify(tree, i, 0)
+        # print(tree)
         print(tree[i])
 heap_sort(tree2,n)

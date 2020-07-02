@@ -10,7 +10,7 @@ def findMedianSortedArrays(nums1, nums2):
         low = 0
         high = x
 
-        while low<=high:
+        while low <= high:
             partitionX = int((low + high)/2)
             partitionY = int((x + y + 1)/2 - partitionX)
 

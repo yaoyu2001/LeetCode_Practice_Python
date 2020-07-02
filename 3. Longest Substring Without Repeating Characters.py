@@ -1,5 +1,7 @@
 import collections
-#https://www.youtube.com/watch?v=LupZFfCCbAU
+
+
+# https://www.youtube.com/watch?v=LupZFfCCbAU
 
 # Optimized brute force
 class Solution:
@@ -10,21 +12,23 @@ class Solution:
         for i in range(n):
             seen = collections.defaultdict(int)
             j = i
-            while j<n and seen[s[j]] != 1:
+            while j < n and seen[s[j]] != 1:
                 seen[s[j]] = 1
-                j +=1
+                j += 1
 
             ans = max(ans, j - i)
 
         return ans
 
-s1 = "abcabcbb"
+
+s1 = "abcabcdbb"
 s2 = "bbbbb"
 
 s = Solution()
 
 print(s.lengthOfLongestSubstring(s1))
 print(s.lengthOfLongestSubstring(s2))
+
 
 # HashTable and Sliding Window
 # Window (i,j) with unique characters
@@ -38,14 +42,43 @@ print(s.lengthOfLongestSubstring(s2))
 def lengthOfLongestSubstring2(s: str) -> int:
     n = len(s)
     ans = 0
-    idx = collections.defaultdict(lambda :-1)
-    i = 0
+    idx = collections.defaultdict(lambda: -1)
+    begin = 0
     for j in range(n):
-        i = max(i, idx[s[j]] + 1)
-        ans = max(ans, j - i + 1)
+        begin = max(begin, idx[s[j]] + 1)
+        ans = max(ans, j - begin + 1)
         idx[s[j]] = j
 
     return ans
 
+
 print(lengthOfLongestSubstring2(s1))
 print(lengthOfLongestSubstring2(s2))
+
+
+# Method 3 https://www.youtube.com/watch?v=u3fnbw7Ut7g&list=PLJCHnHCd1EzRBdOdjbPxxQK75OJswMXjY&index=9&t=7849s
+# Slide window same as method 2
+
+def lengthOfLongestSubstring(s):
+    begin = 0  # Head pointer of window
+    result = 0  # Maximal length
+
+    word = ""
+    char_map = collections.defaultdict(int)
+
+    for i in range(len(s)):
+        char_map[s[i]] += 1
+        if char_map[s[i]] == 1:
+            word += s[i]
+            result = max(result, len(word))
+
+        else:
+            while begin < i and char_map[s[i]] > 1:
+                char_map[s[begin]] -= 1
+                begin += 1
+
+            word = ""  # Update word
+            for j in range(begin, i + 1):
+                word += s[j]
+
+    return result
