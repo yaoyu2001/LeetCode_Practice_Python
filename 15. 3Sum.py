@@ -92,3 +92,36 @@ class Solution_wrong:
 
 sr = Solution_wrong()
 print(sr.threeSum(nums))
+
+# 2020.7.8 meet again
+# When meet nums[i] + nums[start] + nums[end] == 0, then we can ignore duplicate value and move two pointers
+class Solution_2:
+    def threeSum(self, nums: [int]) -> [[int]]:
+        # First sort given list
+        nums.sort()
+        res = []
+
+        # Transerval until len(nums) - 2 because we need 3 nums as a group
+        for i in range(0, len(nums) - 2):
+            # Ignore duplicate num
+            if i == 0 or nums[i] != nums[i - 1]:
+                # Set boundry
+                start = i + 1
+                end = len(nums) - 1
+                while start < end:
+                    if nums[i] + nums[start] + nums[end] == 0:
+                        res.append([nums[i], nums[start], nums[end]])
+                        # Go forward or backstep to ignore duplicate
+                        while start < end and nums[start] == nums[start + 1]:
+                            start += 1
+                        while start < end and nums[end] == nums[end - 1]:
+                            end -= 1
+                        # Find next pair fulfill requirement
+                        start += 1
+                        end -= 1
+                    elif nums[i] + nums[start] + nums[end] < 0:
+                        start += 1
+                    else:
+                        end -= 1
+
+        return res

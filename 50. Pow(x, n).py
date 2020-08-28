@@ -7,8 +7,8 @@ class Solution:
         if n < 0: return 1/(x*self.myPow(x, -(n+1)))
         res = 1
 
-        while n>1:
-            if n%2 ==1:
+        while n > 1:
+            if n%2 == 1:
                 res *=x
             x = x*x
             n = n//2

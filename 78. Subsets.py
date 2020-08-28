@@ -21,6 +21,7 @@ arr = [1,2,3]
 print(so.subsets(arr))
 arr.extend([4])
 # print([]+[2], arr)
+
 # 2 Back tracking
 class Solution2:
     def subsets(self, nums: [int]) -> [[int]]:
